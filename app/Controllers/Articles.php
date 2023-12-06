@@ -2,11 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\ArticleModel;
+
 class Articles extends BaseController
 {
     public function index(): string
     {
-        return view("header", ["title" => "Articles"])
-            .  view("Articles/index.php");
+      $model = new ArticleModel;
+
+      $data = $model->findAll();
+
+      return view("Articles/index.php", [
+        "articles" => $data
+      ]);
     }
 }
