@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>
   <h1>Article List</h1>
 
-  <a href="<?= url_to("Articles:new") ?>">New</a>
+  <a href="<?= url_to("Articles::new") ?>">New</a>
 
   <?php foreach ($articles as $article): ?>
     <article>
