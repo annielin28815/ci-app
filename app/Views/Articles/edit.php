@@ -14,7 +14,7 @@
   </ul>
 <?php endif; ?>
 
-<?= form_open("articles/update" . $article["id"]) ?>
+<?= form_open("articles/update/" . $article["id"]) ?>
 
 <label for="title">Title</label>
 <input type="text" id="title" name="title" value="<?= old("title", esc($article["title"])) ?>">
