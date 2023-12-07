@@ -6,13 +6,21 @@
 
 <h1>New Article</h1>
 
+<?php if (session()->has("errors")): ?>
+  <ul>
+    <?php foreach(session("errors") as $error): ?>
+      <li><?= $error ?></li>
+    <?php endforeach; ?>
+  </ul>
+<?php endif; ?>
+
 <?= form_open("articles/create") ?>
 
 <label for="title">Title</label>
-<input type="text" id="title" name="title">
+<input type="text" id="title" name="title" value="<?= old("title") ?>">
 
 <label for="content">Content</label>
-<textarea  id="content" name="content"></textarea>
+<textarea  id="content" name="content" value="<?= old("content") ?>"></textarea>
 
 <button>Save</button>
 

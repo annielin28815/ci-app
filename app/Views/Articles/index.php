@@ -11,10 +11,10 @@
     <article>
       <h2>
         <a href="<?= site_url('/articles/' . $article["id"]) ?>">
-          <?= $article['title'] ?>
+          <?= esc($article['title']) ?>
         </a>
       </h2>
-      <p><?= $article['content'] ?></p>
+      <p><?= esc($article['content']) ?></p>
     </article>
   <?php endforeach ?>
 <?= $this->endSection() ?>

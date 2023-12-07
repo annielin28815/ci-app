@@ -36,8 +36,15 @@ class Articles extends BaseController
     public function create()
     {
       $model = new ArticleModel;
-      $model->insert($this->request->getPost());
+      $id = $model->insert($this->request->getPost());
 
-      dd($model->insertID);
+      if($id === false) {
+        return redirect()->back()
+                         ->with("errors", $model->errors())
+                         ->withInput();
+      }
+
+      return redirect()->to("articles/$id")
+                       ->with("message", "Article saved.");
     }
 }
