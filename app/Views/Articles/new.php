@@ -16,13 +16,7 @@
 
 <?= form_open("articles/create") ?>
 
-<label for="title">Title</label>
-<input type="text" id="title" name="title" value="<?= old("title") ?>">
-
-<label for="content">Content</label>
-<textarea  id="content" name="content" value="<?= old("content") ?>"></textarea>
-
-<button>Save</button>
+<?= $this->include("Articles/form") ?>
 
 </form>
 
