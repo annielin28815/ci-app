@@ -39,7 +39,8 @@ class Articles extends BaseController
     public function create()
     {
       $model = new ArticleModel;
-      $id = $model->insert($this->request->getPost());
+      $article = new Article($this->request->getPost());
+      $id = $model->insert($article);
 
       if($id === false) {
         return redirect()->back()
@@ -66,7 +67,16 @@ class Articles extends BaseController
     {
       $model = new ArticleModel;
 
-      if ($model->update($id, $this->request->getPost())) {
+      $article = $model->find($id);
+
+      $article->fill($this->request->getPost());
+
+      if(!$article->hasChanged()){
+        return redirect()->back()
+                         ->with("message", "Nothing to update.");
+      }
+
+      if ($model->save($article)) {
         return redirect()->to("articles/$id")
                          ->with("message", "Article updated.");
       }
