@@ -54,15 +54,6 @@ class Articles extends BaseController
       return redirect()->to("articles/$id")
                        ->with("message", "Article saved.");
     }
-
-    public function edit($id)
-    {
-      $article = $this->getArticleOr404($id);
-
-      return view("Articles/edit", [
-        "article" => $article
-      ]);
-    }
     
     public function update($id)
     {
@@ -83,6 +74,21 @@ class Articles extends BaseController
       return redirect()->back()
                        ->with("errors", $this->model->errors())
                        ->withInput();
+    }
+
+    public function delete($id)
+    {
+      $article = $this->getArticleOr404($id);
+
+      if($this->request->is("post")) {
+        $this->model->delete($id);
+        return redirect()->to("articles")
+                         ->with("message", "Article deleted.");
+      }
+      
+      return view("Articles/delete", [
+        "article" => $article
+      ]);
     }
 
     private function getArticleOr404($id): Article
