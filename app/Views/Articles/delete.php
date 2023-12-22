@@ -8,7 +8,8 @@
 
 <p>Are you sure?</p>
 
-<?= form_open("articles/delete/" . $article->id) ?>
+<?= form_open("articles/" . $article->id) ?>
+  <input type="hidden" name="_method" value="delete">
   <button>Yes</button>
 </form>
 
