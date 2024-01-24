@@ -40,7 +40,7 @@ class Users extends BaseController
     {
         $user = $this->getUserOr404($id);
 
-        if ($user->isBanned()) {
+        if($user->isBanned()) {
             $user->unBan();
         } else {
             $user->ban();
