@@ -15,6 +15,12 @@
   
   <dt>Created</dt>
   <dd><?= esc($user->created_at) ?></dd>
+
+  <dt>Groups</dt>
+  <dd>
+    <?= implode(", ", $user->getGroups()) ?>
+    <a href="<?= url_to("\Admin\Controllers\Users::groups", $user->id) ?>">edit</a>
+  </dd>
 </dl>
 
 <?= form_open("admin/users/" . $user->id . "/toggle-ban") ?>
