@@ -5,6 +5,18 @@
 <?= $this->section("content") ?>
 
   <h1><?= esc($article->title) ?></h1>
+
+  <?php if($article->image): ?>
+    <img src="<?= url_to("Article\Image::get", $article->id) ?>">
+
+    <?= form_open("articles/". $article->id . "/image/delete") ?>
+      <button>Delete</button>
+    </form>
+
+  <?php else: ?>
+    <a href="<?= url_to("Article\Image::new", $article->id) ?>">Edit image</a>
+  <?php endif; ?>
+
   <p><?= esc($article->content) ?></p>
 
   <?php if ($article->isOwner() ||
